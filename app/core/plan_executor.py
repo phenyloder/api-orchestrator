@@ -20,6 +20,7 @@ class PlanExecutor:
         context = {}
         errors = []
         api_calls_made = 0
+        resource_results = {}
 
         try:
             ordered_steps = plan.get_dependency_order()
@@ -37,6 +38,10 @@ class PlanExecutor:
                         context[field_name] = value
                         logger.info(f"Extracted {field_name}={value}")
 
+                    # Group results by resource (operation_id or resource name)
+                    resource_key = step.operation_id
+                    resource_results[resource_key] = result
+
                 except Exception as e:
                     logger.error(f"Step failed: {step.operation_id}", error=str(e))
                     errors.append(f"Step {step.operation_id}: {str(e)}")
@@ -46,7 +51,7 @@ class PlanExecutor:
 
         execution_time = time.time() - start_time
 
-        final_data = context.get(ordered_steps[-1].id, {}) if ordered_steps else {}
+        final_data = resource_results
 
         return ExecutionResult(
             plan_id=plan.id,

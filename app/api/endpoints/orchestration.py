@@ -46,13 +46,27 @@ async def execute_query(
 
         return {
             "success": result.success,
-            "data": result.data,
+            "data": result.data,  # Dict of operation_id -> result
             "errors": result.errors,
             "plan": {
                 "id": plan.id,
                 "steps": len(plan.steps),
+                "resources": [q.target_resource for q in plan.parsed_queries.queries],
                 "execution_time": result.execution_time,
-                "api_calls_made": result.api_calls_made
+                "api_calls_made": result.api_calls_made,
+                "step_details": [
+                    {
+                        "id": step.id,
+                        "operation_id": step.operation_id,
+                        "api_name": step.api_name,
+                        "method": step.method,
+                        "path": step.path,
+                        "parameters": step.parameters,
+                        "depends_on": step.depends_on,
+                        "extract_fields": step.extract_fields
+                    }
+                    for step in plan.steps
+                ]
             }
         }
 
@@ -71,6 +85,7 @@ async def get_execution_plan(
         plan = await orchestrator.create_execution_plan(query)
         return {
             "query": plan.query,
+            "resources": [q.target_resource for q in plan.parsed_queries.queries],
             "steps": [
                 {
                     "id": step.id,

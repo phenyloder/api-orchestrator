@@ -17,6 +17,9 @@ class ParsedQuery(BaseModel):
     filters: Dict[str, Any] = {}
     required_fields: List[str] = []
 
+class MultiParsedQuery(BaseModel):
+    queries: List[ParsedQuery]
+
 class APICallPlan(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     api_name: str
@@ -31,7 +34,7 @@ class APICallPlan(BaseModel):
 class ExecutionPlan(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     query: str
-    parsed_query: ParsedQuery
+    parsed_queries: MultiParsedQuery
     steps: List[APICallPlan] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
