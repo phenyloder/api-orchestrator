@@ -1,0 +1,105 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Activate SKU"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/devices/{iccid}/skus": {
+      "post": {
+        "tags": [
+          "Activate SKU"
+        ],
+        "summary": "Activate SKU on device and create service monetization sku order",
+        "description": "",
+        "operationId": "activateSKU",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "iccid",
+            "in": "path",
+            "description": "ICCID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "At least one parameter is required",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ActivateSKUModel"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ActivateSKUModel": {
+      "type": "object",
+      "properties": {
+        "skuCode": {
+          "type": "string"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "pricePaid": {
+          "type": "integer",
+          "format": "int64",
+          "required": true
+        },
+        "orderReference": {
+          "type": "string"
+        },
+        "skuOrderNotes": {
+          "type": "string"
+        },
+        "callBackUrl": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "host": "api-iotdevice.att.com",
+  "basePath": "/rws/api",
+  "tags": [{
+    "name": "Get Session History"
+  }],
+  "paths": {
+    "/v{apiVersion}/devices/{iccid}/sessions": {
+      "get": {
+        "tags": ["Get Session History"],
+        "summary": "Return session history or current session.",
+        "description": "Returns the session history in x hours. Top 50 most recent sessions are provided within the x hours.",
+        "operationId": "getSessionHistoryByIccid",
+        "produces": ["application/json"],
+        "parameters": [{
+          "name": "sinceHour",
+          "in": "query",
+          "description": "Number of hours from current time to retrieve session history",
+          "required": false,
+          "type": "string"
+        },
+          {
+            "name": "iccid",
+            "in": "path",
+            "description": "ICCID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SessionHistory"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SessionHistory": {
+      "type" : "object",
+      "properties" : {
+        "sessions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "iccid" : {
+                "type" : "string"
+              },
+              "ipAddress" : {
+                "type" : "string"
+              },
+              "ipv6Address" : {
+                "type" : "string"
+              },
+              "inSession" : {
+                "type" : "boolean"
+              },
+              "apn" : {
+                "type" : "string"
+              },
+              "carrier" : {
+                "type" : "string"
+              },
+              "carrierId" : {
+                "type" : "long"
+              },
+              "dateSessionStarted" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "dateSessionEnded" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "upLinkDataVolume" : {
+                "type" : "BigDecimal"
+              },
+              "downLinkDataVolume" : {
+                "type" : "BigDecimal"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

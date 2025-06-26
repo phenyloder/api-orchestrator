@@ -1,0 +1,224 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Account Application Settings"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/accounts/{accountId}/applicationSettings": {
+      "put": {
+        "tags": [
+          "Account Application Settings"
+        ],
+        "summary": "Update Application Settings for an account",
+        "description": "",
+        "operationId": "updateAccountApplicationSettings",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "AccountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Update Application Settings for Account",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountApplicationSettingsDTO"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AccountApplicationSettingsDTO": {
+      "type": "object",
+      "properties": {
+        "applicationFeature": {
+          "type": "object",
+          "properties": {
+            "accessCommPlan": {
+              "type": "boolean",
+              "default": false
+            },
+            "csdAccess": {
+              "type": "boolean",
+              "default": false
+            },
+            "businessRulesEnabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "globalAccountEnabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "policiesEnabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "simOrderingEnabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "smsAccess": {
+              "type": "boolean",
+              "default": false
+            },
+            "subscriptionChannel": {
+              "type": "boolean",
+              "default": false
+            },
+            "voiceAccess": {
+              "type": "boolean",
+              "default": false
+            },
+            "smsEnabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "voiceEnabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "iotCloudConnectEnabled": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "simFeature": {
+          "type": "object",
+          "properties": {
+            "blockBackwardSimState": {
+              "type": "boolean",
+              "default": false
+            },
+            "defaultSimState": {
+              "type": "string",
+              "format": "string"
+            },
+            "displayDiagnosticWizard": {
+              "type": "boolean",
+              "default": false
+            },
+            "displaySpotlight": {
+              "type": "boolean",
+              "default": false
+            },
+            "fixedIpEnabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "testReadyDataLimit": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "testReadySmsLimit": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "testReadyVoiceLimit": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "testReadyCsdLimit": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "testReadyDataState": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        },
+        "siteConfiguration": {
+          "type": "object",
+          "properties": {
+            "cobrandSite": {
+              "type": "string",
+              "format": "string"
+            },
+            "fileExportMethod": {
+              "type": "string",
+              "format": "string"
+            },
+            "eulaEnabled": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "support": {
+          "type": "object",
+          "properties": {
+            "supportEmail": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 3,
+              "maxLength": 320,
+              "pattern": "^[a-zA-Z0-9$%&'*+-/=?^`{|}~]+@[a-zA-Z0-9.-]+$"
+            },
+            "supportPhone": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 25
+            },
+            "showAcctSupport": {
+              "type": "boolean",
+              "default": false
+            },
+            "showSpSupport": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

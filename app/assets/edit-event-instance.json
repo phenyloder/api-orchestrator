@@ -1,0 +1,92 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Edit Event Rate Plans Assigned to Device"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/editeventplan/{iccid}": {
+      "put": {
+        "tags": [
+          "Edit Event Rate Plans Assigned to Device"
+        ],
+        "summary": "Cancel Pending Events for device",
+        "operationId": "editEventInstances",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "apiVersion",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          },
+          {
+            "in": "path",
+            "name": "iccid",
+            "description": "ICCID of the device",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Either of the parameters eventID or eventName is required to cancel pending events",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditEventInstancesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "EditEventInstancesRequest": {
+      "type": "object",
+      "properties": {
+        "eventID": {
+          "type": "string",
+          "default": 123456
+        },
+        "eventName": {
+          "type": "string",
+          "default": "eventName"
+        },
+        "action": {
+          "type": "string",
+          "default": "CancelPendingEvents"
+        }
+      },
+      "required": ["action"]
+    }
+  }
+}

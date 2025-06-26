@@ -1,0 +1,78 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Rate Plans for Account"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/accounts/{accountId}/ratePlans": {
+      "get": {
+        "tags": [
+          "Rate Plans for Account"
+        ],
+        "summary": "Get Assigned Rate Plans for an account",
+        "description": "",
+        "operationId": "getRatePlansForAnAccount",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "AccountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "defaults to 50",
+            "required": false,
+            "type": "integer",
+            "default": "50"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Defaults to 1",
+            "required": false,
+            "type": "integer",
+            "default": "1"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

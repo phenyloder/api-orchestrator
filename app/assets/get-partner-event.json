@@ -1,0 +1,84 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Get Partner Event Rate Plans Assigned to Device"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/partnereventplan/{iccid}": {
+      "get": {
+        "tags": [
+          "Get Partner Event Rate Plans Assigned to Device"
+        ],
+        "summary": "List of currently active and future-dated partner partner event plans for device.",
+        "description": "",
+        "operationId": "getPartnerEvents",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "apiVersion",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          },
+          {
+            "in": "path",
+            "name": "iccid",
+            "description": "ICCID of the device",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "description": "Maximum of 50, defaults to 50",
+            "required": false,
+            "type": "integer",
+            "default": "50"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "description": "Defaults to 1",
+            "required": false,
+            "type": "integer",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  }
+}

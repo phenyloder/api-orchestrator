@@ -1,0 +1,92 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Orders"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/orders": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Get list of orders based on the user",
+        "description": "Get list of orders based on the user",
+        "operationId": "getOrders",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "query",
+            "description": "Account ID",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "orderStatus",
+            "in": "query",
+            "description": "Order Status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "poNumber",
+            "in": "query",
+            "description": "PO Number",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "defaults to 50",
+            "required": false,
+            "type": "integer",
+            "default": "50"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Defaults to 1",
+            "required": false,
+            "type": "integer",
+            "default": "1"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Custom Charges"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/charges/{chargeId}": {
+      "delete": {
+        "tags": [
+          "Custom Charges"
+        ],
+        "summary": "Delete a custom charge",
+        "description": "",
+        "operationId": "deleteCustomCharge",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "chargeId",
+            "in": "path",
+            "description": "ChargeId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Delete a Custom Charge",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomChargesDeleteDTO"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CustomChargesDeleteDTO": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "format": "int64",
+          "required": true
+        },
+        "referenceId": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        }
+      }
+    }
+  }
+}

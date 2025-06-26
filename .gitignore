@@ -1,0 +1,72 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Poetry
+.poetry/
+# If you want to ignore Poetry's virtual environment
+# Uncomment the following if you use `poetry config virtualenvs.in-project true`
+# .venv/
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Pytest
+.pytest_cache/
+
+# MyPy
+.mypy_cache/
+
+# VSCode settings
+.vscode/
+
+# macOS / Linux
+.DS_Store
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# FastAPI static or temp files (if used)
+static/
+media/
+tmp/
+temp/
+
+# Local environment variables or settings
+.env
+.env.*
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# System-specific
+Thumbs.db
+ehthumbs.db

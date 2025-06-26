@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Get Device Location History"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/devices/{iccid}/locationHistory": {
+      "get": {
+        "tags": [
+          "Get Device Location History"
+        ],
+        "summary": "Get Device Location History during a specified time frame.",
+        "description": "",
+        "operationId": "getDeviceLocationHistory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "iccid",
+            "in": "path",
+            "description": "ICCID of the device",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "description": "If this is not specified, most recent 2 location records will be returned. </br> The format is yyyy-MM-ddTHH:mm:ssZ </br> Eg: 2018-07-18T17:31:34+00:00",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "description": "If this is not specified, location history up until the current date will be returned. </br> The format is yyyy-MM-ddTHH:mm:ssZ </br> Eg: 2018-07-18T17:31:34+00:00",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Maximum of 50, defaults to 50",
+            "required": false,
+            "type": "integer",
+            "default": "50",
+            "format": "int32"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Defaults to 1",
+            "required": false,
+            "type": "integer",
+            "default": "1",
+            "format": "int32"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  }
+}

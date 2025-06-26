@@ -1,0 +1,99 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Assign Partner Event Rate Plan to Device"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/partnereventplan/{iccid}": {
+      "put": {
+        "tags": [
+          "Assign Partner Event Rate Plan to Device"
+        ],
+        "summary": "Triggers activation of an partner event for a device on the effective date or current date and time if no effective date is provided.",
+        "description": "",
+        "operationId": "activateTerminalEvent",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "apiVersion",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          },
+          {
+            "in": "path",
+            "name": "iccid",
+            "description": "ICCID of the device",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Triggers event activation for a device at the current date and time if no effectiveDate is provided.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PartnerActivateTerminalEventRequest"
+            }
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "PartnerActivateTerminalEventRequest": {
+      "type": "object",
+      "properties": {
+        "partnerEventName": {
+          "type": "string",
+          "default": "partnerEventName"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2024-04-29T12:03:44Z"
+        },
+        "instances": {
+          "type": "integer",
+          "default": 1
+        }
+      },
+      "required": ["eventName"]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Send SMS"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/devices/{iccid}/smsMessages": {
+      "post": {
+        "tags": [
+          "Send SMS"
+        ],
+        "summary": "Send SMS message to a device.",
+        "description": "",
+        "operationId": "sendSmsMessages",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "iccid",
+            "in": "path",
+            "description": "ICCID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/SendSmsMessagesRequest"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SendSmsMessagesRequest": {
+      "type": "object",
+      "properties": {
+        "messageText": {
+          "type": "string"
+        },
+        "messageEncoding": {
+          "type": "string"
+        },
+        "dataCoding": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tpvp": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "callbackParam": {
+          "type": "object",
+          "properties": {
+            "callbackType": {
+              "type": "string"
+            },
+            "callbackUrl": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

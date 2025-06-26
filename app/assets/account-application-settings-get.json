@@ -1,0 +1,62 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Account Application Settings"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/accounts/{accountId}/applicationSettings": {
+      "get": {
+        "tags": [
+          "Account Application Settings"
+        ],
+        "summary": "Get Account Application Settings for a given accountId",
+        "description": "",
+        "operationId": "getAccountApplicationSettingsByAccountId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "AccountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Rate Plans for Account"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/accounts/{accountId}/ratePlans": {
+      "put": {
+        "tags": [
+          "Rate Plans for Account"
+        ],
+        "summary": "Assign shared rate plan to an account",
+        "description": "",
+        "operationId": "assignSharedRatePlansToAnAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "AccountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Assign shared rate plan to an account",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RatePlanUpdateDTO"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RatePlanUpdateDTO": {
+      "type": "object",
+      "required":true,
+      "properties": {
+        "sharedRatePlans": {
+          "type": "array",
+          "required": true,
+          "items" : {
+          "type": "string"
+        }
+        }
+      }
+    }
+  }
+}

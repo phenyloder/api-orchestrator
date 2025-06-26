@@ -1,0 +1,171 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Account Billing Settings"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/accounts/{accountId}/billingSettings": {
+      "put": {
+        "tags": [
+          "Account Billing Settings"
+        ],
+        "summary": "Update Billing Settings for an account",
+        "description": "",
+        "operationId": "updateAccountBillingSettings",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "AccountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Update Billing Settings for Account",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountBillingSettings"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AccountBillingSettings": {
+      "type": "object",
+      "properties": {
+        "general": {
+          "type": "object",
+          "properties": {
+            "taxable": {
+              "type": "boolean",
+              "default": false
+            },
+            "billable": {
+              "type": "boolean",
+              "default": false
+            },
+            "prorationRule": {
+              "type": "string",
+              "format": "string"
+            },
+            "renewalProrationRule": {
+              "type": "string",
+              "format": "string"
+            },
+            "simFee": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "activationPlan": {
+              "type": "string",
+              "format": "string"
+            },
+            "activationFee": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "retailBilling": {
+              "type": "string",
+              "format": "string"
+            },
+            "immediateRatePlanChange": {
+              "type": "boolean",
+              "default": false
+            },
+            "defaultTimeZone": {
+              "type": "string",
+              "format": "string"
+            },
+            "eventPlanEnabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "prepaidRenewalPolicy": {
+              "type": "string",
+              "format": "string"
+            },
+            "prepaidRenewalRatePlanId": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        },
+        "commitments": {
+          "type": "object",
+          "properties": {
+            "activationGracePeriod": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "billActivationGracePeriod": {
+              "type": "boolean",
+              "default": false
+            },
+            "monthlyDevicesMinimumTerm": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "monthlyDeviceMinimum": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "billMonthlyDeviceMinimum": {
+              "type": "boolean",
+              "default": false
+            },
+            "minimumActivationTerm": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "billMinimumActivationTerm": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Get list of Aggregated Usage Details Group by Account, Carrier, Country, RatePlan, RatingZone for given operator."
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/dynareport/operator/usage": {
+      "get": {
+        "tags": [
+          "Get list of Aggregated Usage Details Group by Account, Carrier, Country, RatePlan, RatingZone for given operator."
+        ],
+        "summary": "Return list of Aggregated Usage Details Group by Account, Carrier, Country, RatePlan, RatingZone for given operator.",
+        "description": "",
+        "operationId": "getAggregatedUsageByOperator",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountIds",
+            "in": "query",
+            "description": "account Ids. Example: 100000128,100000121,100000136. Accepts list of string.",
+            "required": false,
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start Date. The format is yyyyMMDD. Example: 20240624",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End Date. The format is yyyyMMDD. Example: 20240628",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "billingCycle",
+            "in": "query",
+            "description": "Billing Cycle. The format is yyyyMM. Example: 202410",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "groupBy",
+            "in": "query",
+            "description": "Group By account,carrier,country,RatePlan,RatingZone. Example: account,carrier,country,ratePlan,ratingZone. Accepts list of string.",
+            "required": false,
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          {
+            "name": "metrics",
+            "in": "query",
+            "description": "Metrics. Example: data,sms,voice,smt,smo,vmo,vmt. Accepts list of string.",
+            "required": false,
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          {
+            "name": "sortedBy",
+            "in": "query",
+            "description": "Sorted By. Example: account, data, sms, voice, smt, smo, vmt, vmo",
+            "required": false,
+            "type": "string",
+            "default": "account"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "description": "Sort Direction",
+            "required": false,
+            "type": "string",
+            "default": "desc"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page Number",
+            "required": false,
+            "type": "integer",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page Size",
+            "required": false,
+            "type": "integer",
+            "default": "50"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

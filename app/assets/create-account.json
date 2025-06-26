@@ -1,0 +1,304 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Accounts"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/accounts": {
+      "post": {
+        "tags": [
+          "Create Account"
+        ],
+        "summary": "Create an Account by providing account details in JSON format",
+        "description": "",
+        "operationId": "createAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Create an Account",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountCreateDTO"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AccountCreateDTO": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "acctType": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "operatorName": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "taxId": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "currencyCode": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "languageName": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "timeZoneName": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "defaultSIMStateName": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "defaultRatePlanName": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "defaultCommPlanName": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "regionName": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "primaryContact": {
+          "type": "object",
+          "required": true,
+          "properties": {
+            "contactFirstName": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "contactLastName": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "contactEmail": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "contactPhone": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            }
+          }
+        },
+        "isBillingContactSameAsPrimary": {
+          "type": "boolean",
+          "required": true
+        },
+        "billingContact": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "contactFirstName": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "contactLastName": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "contactEmail": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "contactPhone": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            }
+          }
+        },
+        "billingAddr": {
+          "type": "object",
+          "required": true,
+          "properties": {
+            "addr1": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "addr2": {
+              "type": "string",
+              "format": "string",
+              "required": false
+            },
+            "city": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "region": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "countryCode": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "postalCode": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            }
+          }
+        },
+        "isShippingAddrSameAsBilling": {
+          "type": "boolean",
+          "required": true
+        },
+        "shippingAddr": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "addr1": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "addr2": {
+              "type": "string",
+              "format": "string",
+              "required": false
+            },
+            "city": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "region": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "countryCode": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "postalCode": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            }
+          }
+        },
+        "isPPUAddrSameAsShipping": {
+          "type": "boolean",
+          "required": true
+        },
+        "ppuAddr": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "addr1": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "addr2": {
+              "type": "string",
+              "format": "string",
+              "required": false
+            },
+            "city": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "region": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "countryCode": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            },
+            "postalCode": {
+              "type": "string",
+              "format": "string",
+              "required": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Custom Charges"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/charges": {
+      "get": {
+        "tags": [
+          "Custom Charges"
+        ],
+        "summary": "Get all custom charges for an operator",
+        "description": "",
+        "operationId": "getCustomCharges",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "defaults to 50",
+            "required": false,
+            "type": "integer",
+            "default": "50"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Defaults to 1",
+            "required": false,
+            "type": "integer",
+            "default": "1"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Get SMS Details"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/smsMessages/{smsMsgId}": {
+      "get": {
+        "tags": [
+          "Get SMS Details"
+        ],
+        "summary": "Returns detailed information about a message.",
+        "description": "",
+        "operationId": "getSmsMessageDetail",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "smsMsgId",
+            "in": "path",
+            "description": "SMS Message ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "messageEncoding",
+            "in": "query",
+            "description": "LITERAL(default) or BASE64",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Resource not found"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

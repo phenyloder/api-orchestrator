@@ -1,0 +1,101 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [{
+    "name": "Get Device Registration History"
+  }],
+  "paths": {
+    "/v{apiVersion}/devices/{iccid}/registrations": {
+      "get": {
+        "tags": ["Get Device Registration History"],
+        "summary": "Returns information on successful and failed Triplets/LU/CL updates.",
+        "description": "Returns the registration history in x hours. Top 50 most recent registration events are provided within the x hours.",
+        "operationId": "getRegistrationHistoryByIccid",
+        "produces": ["application/json"],
+        "parameters": [{
+            "name": "sinceHour",
+            "in": "query",
+            "description": "Number of hours from current time to retrieve registration history",
+            "required": false,
+            "type": "string"
+          },
+          {
+          "name": "iccid",
+          "in": "path",
+          "description": "ICCID",
+          "required": true,
+          "type": "string"
+        },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DeviceRegistrationEvents"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DeviceRegistrationEvents": {
+      "type" : "object",
+      "properties" : {
+        "iccid": {
+          "type": "string"
+        },
+        "registrationEvents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "eventDateTime": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "eventType": {
+                "type": "string"
+              },
+              "carrierId": {
+                "type": "integer"
+              },
+              "carrierName": {
+                "type": "string"
+              },
+              "registrationType": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

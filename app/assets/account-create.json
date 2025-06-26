@@ -1,0 +1,431 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Accounts"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/accounts": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Create an account.",
+        "description": "",
+        "operationId": "createAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Create an Account ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountCreateDTO"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AccountCreateDTO": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 60,
+          "pattern": "^[^*,]+$"
+        },
+        "type": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "operator": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "currency": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "language": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "taxId": {
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 20,
+          "pattern": "^[^*,]+$"
+        },
+        "industryVertical": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "defaultSIMState": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "defaultCommPlanName": {
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "minLength": 3,
+          "maxLength": 50,
+          "pattern": "^[^*,]+$"
+        },
+        "defaultRatePlanName": {
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "minLength": 3,
+          "maxLength": 40,
+          "pattern": "^[^*,]+$"
+        },
+        "p5gCommercialStatus": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "primaryContact": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 3,
+              "maxLength": 49
+            },
+            "lastName": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 3,
+              "maxLength": 49
+            },
+            "email": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 3,
+              "maxLength": 320,
+              "pattern": "^[a-zA-Z0-9$%&'*+-/=?^`{|}~]+@[a-zA-Z0-9.-]+$"
+            },
+            "phone": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 25
+            },
+            "fax": {
+              "type": "string"
+            },
+            "jobTitle": {
+              "type": "string"
+            }
+          }
+        },
+        "billingContactSameAsPrimary": {
+          "type": "boolean",
+          "required": true
+        },
+        "billingContact": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 3,
+              "maxLength": 49
+            },
+            "lastName": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 3,
+              "maxLength": 49
+            },
+            "email": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 3,
+              "maxLength": 320,
+              "pattern": "^[a-zA-Z0-9$%&'*+-/=?^`{|}~]+@[a-zA-Z0-9.-]+$"
+            },
+            "phone": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 25
+            },
+            "fax": {
+              "type": "string"
+            }
+          }
+        },
+        "billingAddr": {
+          "type": "object",
+          "properties": {
+            "addr1": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "addr2": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "city": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "region": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "countryCode": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "postalCode": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        },
+        "shippingAddrSameAsBilling": {
+          "type": "boolean",
+          "required": true
+        },
+        "shippingAddr": {
+          "type": "object",
+          "properties": {
+            "addr1": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "addr2": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "city": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "region": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "countryCode": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "postalCode": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        },
+        "ppuaddrSameAsShipping": {
+          "type": "boolean",
+          "required": true
+        },
+        "ppuAddr": {
+          "type": "object",
+          "properties": {
+            "addr1": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "addr2": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "city": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "region": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "countryCode": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "postalCode": {
+              "type": "string",
+              "format": "string",
+              "required": true,
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        },
+        "accountSegment": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "notes": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "operatorAccountId": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "customFields": {
+          "type": "object",
+          "properties": {
+            "fieldValue1": {
+              "type": "string"
+            },
+            "fieldValue2": {
+              "type": "string"
+            },
+            "fieldValue3": {
+              "type": "string"
+            },
+            "fieldValue4": {
+              "type": "string"
+            },
+            "fieldValue5": {
+              "type": "string"
+            },
+            "fieldValue6": {
+              "type": "string"
+            },
+            "fieldValue7": {
+              "type": "string"
+            },
+            "fieldValue8": {
+              "type": "string"
+            },
+            "fieldValue9": {
+              "type": "string"
+            },
+            "fieldValue10": {
+              "type": "string"
+            }
+          },
+          "required": false
+        }
+      }
+    }
+  }
+}

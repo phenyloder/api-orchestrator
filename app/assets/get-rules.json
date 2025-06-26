@@ -1,0 +1,219 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Get Automation Rule List"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/rules": {
+      "get": {
+        "tags": [
+          "Get rule list"
+        ],
+        "summary": "Get a list of automation rules.",
+        "description": "",
+        "operationId": "getRuleList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filterAcctId",
+            "in": "query",
+            "description": "filter acct Id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "trigger",
+            "in": "query",
+            "description": "trigger",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "description": "active",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Rules"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Rules": {
+      "type": "array",
+      "items": {
+        "Rule": {
+          "type" : "object",
+          "properties" : {
+            "ruleId" : {
+              "type": "integer",
+              "format": "int64"
+            },
+            "ruleName" : {
+              "type" : "string"
+            },
+            "trigger" : {
+              "type" : "string"
+            },
+            "createdByUser" : {
+              "type" : "string"
+            },
+            "lastEditedBy" : {
+              "type" : "string"
+            },
+            "ruleDefinition": {
+              "type": "object",
+              "properties": {
+                "param0": {
+                  "type": "string"
+                },
+                "param1": {
+                  "type": "string"
+                },
+                "param2": {
+                  "type": "string"
+                }
+              }
+            },
+            "filter": {
+              "type": "object",
+              "properties": {
+                "acctId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ratePlanId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "simState": {
+                  "type": "string"
+                },
+                "customerId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "custom1": {
+                  "type": "string"
+                },
+                "custom2": {
+                  "type": "string"
+                },
+                "custom3": {
+                  "type": "string"
+                },
+                "custom4": {
+                  "type": "string"
+                },
+                "custom5": {
+                  "type": "string"
+                },
+                "custom6": {
+                  "type": "string"
+                },
+                "custom7": {
+                  "type": "string"
+                },
+                "custom8": {
+                  "type": "string"
+                },
+                "custom9": {
+                  "type": "string"
+                },
+                "custom10": {
+                  "type": "string"
+                }
+              }
+            },
+            "action": {
+              "type": "object",
+              "properties": {
+                "actionTypeName" : {
+                  "type" : "string"
+                },
+                "actionParam0": {
+                  "type": "string"
+                },
+                "actionParam1": {
+                  "type": "string"
+                },
+                "callBackUrl": {
+                  "type": "string"
+                },
+                "actionFrequency": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            },
+            "followUpAction": {
+              "type": "object",
+              "properties": {
+                "followUpActionActionType": {
+                  "type": "string"
+                },
+                "followUpActionParam0": {
+                  "type": "string"
+                },
+                "followUpActionScheduleTypeName": {
+                  "type": "string"
+                },
+                "followUpActionScheduleParam0": {
+                  "type": "string"
+                }
+              }
+            },
+            "creationDate" : {
+              "type" : "string",
+              "format" : "date-time"
+            },
+            "active" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Customers"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/customers/{customerId}": {
+      "put": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Edits a customer",
+        "description": "Edits a customer",
+        "operationId": "updateCustomer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Customer Details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomerDTO"
+            }
+          },
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "Customer Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CustomerDTO": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 60,
+          "pattern": "^[^*,]+$"
+        },
+        "accountName": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "securityQuestion": {
+          "type": "string",
+          "format": "string",
+          "required": false,
+          "minLength": 10,
+          "maxLength": 100,
+          "pattern": "^[^*,]+$"
+        },
+        "securityAnswer": {
+          "type": "string",
+          "format": "string",
+          "required": false,
+          "minLength": 0,
+          "maxLength": 100,
+          "pattern": "^[^*,]+$"
+        },
+        "shipToBillAddress": {
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        "contacts": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "contact": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "format": "string",
+                  "required": false,
+                  "minLength": 0,
+                  "maxLength": 40,
+                  "pattern": "^[^*,]+$"
+                },
+                "title": {
+                  "type": "string",
+                  "format": "string",
+                  "required": false,
+                  "minLength": 0,
+                  "maxLength": 40,
+                  "pattern": "^[^*,]+$"
+                },
+                "phone": {
+                  "type": "string",
+                  "format": "string",
+                  "required": false,
+                  "minLength": 0,
+                  "maxLength": 25,
+                  "pattern": "^[^*,]+$"
+                },
+                "mobile": {
+                  "type": "string",
+                  "format": "string",
+                  "required": false,
+                  "minLength": 0,
+                  "maxLength": 25,
+                  "pattern": "^[^*,]+$"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "string",
+                  "required": false,
+                  "minLength": 0,
+                  "maxLength": 320,
+                  "pattern": "^[a-zA-Z0-9$%&'*+-/=?^`{|}~]+@[a-zA-Z0-9.-]+$"
+                }
+              }
+            }
+          }
+        },
+        "billingAddress": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "addressLine1" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 40,
+              "pattern": "^[^*,]+$"
+            },
+            "addressLine2" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 40,
+              "pattern": "^[^*,]+$"
+            },
+            "city" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 40,
+              "pattern": "^[^*,]+$"
+            },
+            "state" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 40,
+              "pattern": "^[^*,]+$"
+            },
+            "country" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 100,
+              "pattern": "^[^*,]+$"
+            },
+            "postalCode" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 15,
+              "pattern": "^[^*,]+$"
+            }
+          }
+        },
+        "shippingAddress": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "addressLine1" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 40,
+              "pattern": "^[^*,]+$"
+            },
+            "addressLine2" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 40,
+              "pattern": "^[^*,]+$"
+            },
+            "city" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 40,
+              "pattern": "^[^*,]+$"
+            },
+            "state" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 40,
+              "pattern": "^[^*,]+$"
+            },
+            "country" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 100,
+              "pattern": "^[^*,]+$"
+            },
+            "postalCode" : {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 0,
+              "maxLength": 15,
+              "pattern": "^[^*,]+$"
+            }
+          }
+        }
+      }
+    }
+  }
+}

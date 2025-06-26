@@ -1,0 +1,329 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Create Automation Rule"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/rules": {
+      "post": {
+        "tags": [
+          "Create rule"
+        ],
+        "summary": "Create a new automation rule.",
+        "description": "",
+        "operationId": "createRule",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Check each rule's spec for parameter details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateRuleModel"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Rule"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Rule": {
+      "type" : "object",
+      "properties" : {
+        "ruleId" : {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ruleName" : {
+          "type" : "string"
+        },
+        "trigger" : {
+          "type" : "string"
+        },
+        "createdByUser" : {
+          "type" : "string"
+        },
+        "lastEditedBy" : {
+          "type" : "string"
+        },
+        "ruleDefinition": {
+          "type": "object",
+          "properties": {
+            "param0": {
+              "type": "string"
+            },
+            "param1": {
+              "type": "string"
+            },
+            "param2": {
+              "type": "string"
+            }
+          }
+        },
+        "filter": {
+          "type": "object",
+          "properties": {
+            "acctId": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "ratePlanId": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "simState": {
+              "type": "string"
+            },
+            "customerId": {
+              "type": "long"
+            },
+            "custom1": {
+              "type": "string"
+            },
+            "custom2": {
+              "type": "string"
+            },
+            "custom3": {
+              "type": "string"
+            },
+            "custom4": {
+              "type": "string"
+            },
+            "custom5": {
+              "type": "string"
+            },
+            "custom6": {
+              "type": "string"
+            },
+            "custom7": {
+              "type": "string"
+            },
+            "custom8": {
+              "type": "string"
+            },
+            "custom9": {
+              "type": "string"
+            },
+            "custom10": {
+              "type": "string"
+            }
+          }
+        },
+        "action": {
+          "type": "object",
+          "properties": {
+            "actionTypeName" : {
+              "type" : "string"
+            },
+            "actionParam0": {
+              "type": "string"
+            },
+            "actionParam1": {
+              "type": "string"
+            },
+            "callbackUrl": {
+              "type": "string"
+            },
+            "actionFrequency": {
+              "type": "string"
+            },
+            "content": {
+              "type": "string"
+            }
+          }
+        },
+        "followUpAction": {
+          "type": "object",
+          "properties": {
+            "followUpActionActionType": {
+              "type": "string"
+            },
+            "followUpActionParam0": {
+              "type": "string"
+            },
+            "followUpActionScheduleTypeName": {
+              "type": "string"
+            },
+            "followUpActionScheduleParam0": {
+              "type": "string"
+            }
+          }
+        },
+        "creationDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "active" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "CreateRuleModel": {
+      "type" : "object",
+      "properties" : {
+        "filterAcctId": {
+          "required": true,
+          "type": "integer",
+          "format": "int64"
+        },
+        "trigger": {
+          "required": true,
+          "type": "string"
+        },
+        "ruleName": {
+          "required": true,
+          "type": "string"
+        },
+        "param0": {
+          "required": true,
+          "type": "string"
+        },
+        "param1": {
+          "required": false,
+          "type": "string"
+        },
+        "param2": {
+          "required": false,
+          "type": "string"
+        },
+        "actionTypeName": {
+          "required": true,
+          "type": "string"
+        },
+        "actionParam0": {
+          "required": false,
+          "type": "string"
+        },
+        "actionParam1": {
+          "required": false,
+          "type": "string"
+        },
+        "callbackUrl": {
+          "required": false,
+          "type": "string"
+        },
+        "actionFrequency": {
+          "required": false,
+          "type": "string"
+        },
+        "content": {
+          "required": false,
+          "type": "string"
+        },
+        "followUpActionEnabled": {
+          "required": false,
+          "type": "boolean",
+          "default": false
+        },
+        "followUpActionActionType": {
+          "required": false,
+          "type": "string"
+        },
+        "followUpActionParam0": {
+          "required": false,
+          "type": "string"
+        },
+        "followUpActionScheduleTypeName": {
+          "required": false,
+          "type": "string"
+        },
+        "followUpActionScheduleParam0": {
+          "required": false,
+          "type": "string"
+        },
+        "filterRatePlanId": {
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        "filterCustomerId": {
+          "required": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        "filterSimState": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom1": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom2": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom3": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom4": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom5": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom6": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom7": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom8": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom9": {
+          "required": false,
+          "type": "string"
+        },
+        "filterCustom10": {
+          "required": false,
+          "type": "string"
+        }
+      }
+    }
+  }
+}

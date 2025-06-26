@@ -1,0 +1,62 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Networks"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/monitor/networkmanagement/networks/{networkId}": {
+      "get": {
+        "tags": [
+          "Networks"
+        ],
+        "summary": "Get network details for a given networkId",
+        "description": "Get network details for a given networkId",
+        "operationId": "getNetworkByNetworkId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "networkId",
+            "in": "path",
+            "description": "Network ID",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

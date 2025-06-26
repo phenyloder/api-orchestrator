@@ -1,0 +1,82 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [{
+    "name": "Get Device Usage by Zone"
+  }],
+  "paths": {
+    "/v{apiVersion}/devices/{iccid}/usageInZone": {
+      "get": {
+        "tags": ["Get Device Usage by Zone"],
+        "summary": "Return usage related details for a device under different zones and rate plans.",
+        "description": "",
+        "operationId": "getDeviceCycleUsageInZones",
+        "produces": ["application/json"],
+        "parameters": [{
+          "name": "iccid",
+          "in": "path",
+          "description": "ICCID",
+          "required": true,
+          "type": "string"
+        },
+          {
+            "name": "cycleStartDate",
+            "in": "query",
+            "description": "Filter by start date of a billing cycle.</br> The format is yyyy-MM-ddZ </br> Eg: 2016-11-10Z or 2016-11-10+00:00",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ratePlan",
+            "in": "query",
+            "description": "Filter by rate plan",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "zone",
+            "in": "query",
+            "description": "Filter by zone",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "isActiveRatePlan",
+            "in": "query",
+            "description": "Filter by active rate plans",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }],
+        "responses": {
+          "404": {
+            "description": "Resource not found"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

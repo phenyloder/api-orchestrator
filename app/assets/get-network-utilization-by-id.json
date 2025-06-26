@@ -1,0 +1,101 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Networks"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/monitor/networkmanagement/networkutilisations/{networkId}": {
+      "get": {
+        "tags": [
+          "Networks"
+        ],
+        "summary": "Get network utilisation for the given network ID",
+        "description": "Get network utilisation for the given network ID",
+        "operationId": "getEdgeNetworkUtilizationByNetworkId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          },
+          {
+            "name": "networkId",
+            "in": "path",
+            "description": "Network ID",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "acctId",
+            "in": "query",
+            "description": "Account ID",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "frequency",
+            "in": "query",
+            "description": "Metric time values [HOURLY,DAILY,WEEKLY,MONTHLY]",
+            "required": false,
+            "type": "string",
+            "default": "HOURLY"
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "description": "Number of metric records to fetch",
+            "required": false,
+            "type": "number",
+            "default": "100"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "number",
+            "default": "1"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "type": "number",
+            "default": "50"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

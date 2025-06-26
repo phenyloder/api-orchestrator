@@ -1,0 +1,130 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Custom Charges"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/charges": {
+      "post": {
+        "tags": [
+          "Custom Charges"
+        ],
+        "summary": "Create a custom charge.",
+        "description": "",
+        "operationId": "createCustomCharge",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Create a Custom Charge",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomChargesDTO"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CustomChargesDTO": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "integer",
+          "format": "int64",
+          "required": true
+        },
+        "operatorId": {
+          "type": "integer",
+          "format": "int64",
+          "required": false
+        },
+        "referenceId": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "chargeAmount": {
+          "type": "integer",
+          "format": "int64",
+          "required": true
+        },
+        "changePerRatePlanFlag": {
+          "type": "boolean",
+          "required": false
+        },
+        "ratePlanId": {
+          "type": "integer",
+          "format": "int64",
+          "required": false
+        },
+        "chargePerSimFlag": {
+          "type": "boolean",
+          "required": false
+        },
+        "deviceState": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "frequency": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "recurrences": {
+          "type": "integer",
+          "format": "int64",
+          "required": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.1",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Get Usage by RatePlan"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/usages": {
+      "get": {
+        "tags": [
+          "Get Usage by RatePlan"
+        ],
+        "summary": "Get Usage by RatePlan",
+        "description": "",
+        "operationId": "getUsageByRatePlan",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ratePlanName",
+            "in": "query",
+            "description": "RatePlan Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cycleStartDate",
+            "in": "query",
+            "description": "Filter by start date of a billing cycle.</br> The format is yyyy-MM-ddZ </br> Eg: 2016-11-10Z or 2016-11-10+00:00",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "usageType",
+            "in": "query",
+            "description": "Data Usage Type. Values can be either one of these - DATA/SMS/VOICE",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ratePlanVersion",
+            "in": "query",
+            "description": "RatePlan Version",
+            "required": false,
+            "type": "int64"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Defaults to 1",
+            "required": false,
+            "type": "integer",
+            "default": "1",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Defaults to 50",
+            "required": false,
+            "type": "integer",
+            "default": "50",
+            "format": "int32"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  }
+}

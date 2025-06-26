@@ -1,0 +1,80 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Assign Package"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/packages/{packageName}/accounts": {
+      "post": {
+        "tags": [
+          "Assign Package"
+        ],
+        "summary": "Assign Package to Account.",
+        "description": "",
+        "operationId": "assignPackage",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "packageName",
+            "in": "path",
+            "description": "Package Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Account ID",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AssignPackageToAccountRequest"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AssignPackageToAccountRequest": {
+      "type": "object",
+      "properties": {
+        "acctId": {
+          "type": "integer",
+          "format": "int32",
+          "required": true
+        }
+      }
+    }
+  }
+}

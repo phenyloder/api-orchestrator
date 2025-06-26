@@ -1,0 +1,85 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [{
+    "name": "Get Session Details"
+  }],
+  "paths": {
+    "/v{apiVersion}/devices/{iccid}/sessionInfo": {
+      "get": {
+        "tags": ["Get Session Details"],
+        "summary": "Return information related to the current or most recent session.",
+        "description": "",
+        "operationId": "getSessionInfoByIccid",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [{
+          "name": "iccid",
+          "in": "path",
+          "description": "ICCID",
+          "required": true,
+          "type": "string"
+        },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }],
+        "responses": {
+          "404": {
+            "description": "Resource not found"
+          },
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SessionInfos"
+            }
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SessionInfos": {
+      "type": "object",
+      "properties": {
+        "iccid": {
+          "type": "string"
+        },
+        "ipAddress": {
+          "type": "string"
+        },
+        "ipv6Address": {
+          "type": "string"
+        },
+        "dateSessionStarted": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateSessionEnded": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "apn": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

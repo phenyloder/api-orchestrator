@@ -1,0 +1,89 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Get Device Audit trails"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/devices/{iccid}/auditTrails": {
+      "get": {
+        "tags": [
+          "Get Device Audit trails"
+        ],
+        "summary": "Retrieve audit history for a device based on various filters.",
+        "description": "",
+        "operationId": "getDeviceAuditTrails",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "iccid",
+            "in": "path",
+            "description": "ICCID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "daysOfHistory",
+            "in": "query",
+            "description": "Maximum allowed 365, Defaults to 30",
+            "required": false,
+            "default": "30",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Maximum of 50, defaults to 50",
+            "required": false,
+            "type": "integer",
+            "default": "50",
+            "format": "int32"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Defaults to 1",
+            "required": false,
+            "type": "integer",
+            "default": "1",
+            "format": "int32"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  }
+}

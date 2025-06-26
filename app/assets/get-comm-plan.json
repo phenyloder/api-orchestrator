@@ -1,0 +1,331 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "host": "api-iotdevice.att.com",
+  "basePath": "/rws/api",
+  "tags": [{
+    "name": "Get Comm Plan Details"
+  }],
+  "paths": {
+    "/v{apiVersion}/commPlans/{commPlanId}": {
+      "get": {
+        "tags": ["Get Communication Plan Details"],
+        "summary": "Return information related to the communication plan id provided.",
+        "description": "",
+        "operationId": "getCommPlanDetailByCommPlanId",
+        "produces": ["application/json"],
+        "parameters": [{
+          "name": "commPlanId",
+          "in": "path",
+          "description": "Communication Plan Id",
+          "required": true,
+          "type": "string"
+        },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CommPlan"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CommPlan": {
+      "type" : "object",
+      "properties" : {
+        "commPlanId" : {
+          "type" : "long"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "shared" : {
+          "type" : "boolean"
+        },
+        "hideFromAccounts" : {
+          "type" : "boolean"
+        },
+        "accountName" : {
+          "type" : "string"
+        },
+        "cancelLocationOnProfileChange" : {
+          "type" : "boolean"
+        },
+        "sendPodOnStateChange" : {
+          "type" : "boolean"
+        },
+        "active" : {
+          "type" : "boolean"
+        },
+        "fixedIpEnabled" : {
+          "type" : "boolean"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "onStateCommunicationProfile" : {
+          "type" : "object",
+          "properties" : {
+            "commProfileId" : {
+              "type" : "long"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "shared" : {
+              "type" : "boolean"
+            },
+            "serviceProviderName" : {
+              "type" : "string"
+            },
+            "hideFromAccounts" : {
+              "type" : "boolean"
+            },
+            "hlrTemplate" : {
+              "type" : "string"
+            },
+            "gprs" : {
+              "type" : "boolean"
+            },
+            "sms_mt" : {
+              "type" : "boolean"
+            },
+            "sms_mo" : {
+              "type" : "boolean"
+            },
+            "blockIntSMSMOExceptHomeCountry" : {
+              "type" : "boolean"
+            },
+            "voice_mo" : {
+              "type" : "boolean"
+            },
+            "voice_mt" : {
+              "type" : "boolean"
+            },
+            "internationalVoice" : {
+              "type" : "boolean"
+            },
+            "csdProfile" : {
+              "type" : "boolean"
+            },
+            "csdBearerServiceType" : {
+              "type" : "string"
+            },
+            "csd_mo" : {
+              "type" : "boolean"
+            },
+            "csd_mt" : {
+              "type" : "boolean"
+            },
+            "createdOnHLR" : {
+              "type" : "boolean"
+            },
+            "roamingRestrictionSetId" : {
+              "type" : "long"
+            },
+            "lteRoamingRestrictionSetId" : {
+              "type" : "long"
+            },
+            "active" : {
+              "type" : "boolean"
+            },
+            "fixedIpEnabled" : {
+              "type" : "boolean"
+            },
+            "blockPremiumNumbers" : {
+              "type" : "boolean"
+            },
+            "description" : {
+              "type" : "string"
+            },
+            "lteData" : {
+              "type" : "boolean"
+            },
+            "apns" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "apnId" : {
+                    "type" : "long"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "lte" : {
+                    "type" : "boolean"
+                  },
+                  "pdpIndex" : {
+                    "type" : "string"
+                  },
+                  "pdnIndex" : {
+                    "type" : "string"
+                  },
+                  "apnDesc" : {
+                    "type" : "string"
+                  },
+                  "defaultApn" : {
+                    "type" : "boolean"
+                  },
+                  "fixedIpEnabled" : {
+                    "type" : "boolean"
+                  },
+                  "securityEnabled" : {
+                    "type" : "boolean"
+                  },
+                  "subscriptionEnabled" : {
+                    "type" : "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "offStateCommunicationProfile" : {
+          "type" : "object",
+          "properties" : {
+            "commProfileId" : {
+              "type" : "long"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "shared" : {
+              "type" : "boolean"
+            },
+            "serviceProviderName" : {
+              "type" : "string"
+            },
+            "hideFromAccounts" : {
+              "type" : "boolean"
+            },
+            "hlrTemplate" : {
+              "type" : "string"
+            },
+            "gprs" : {
+              "type" : "boolean"
+            },
+            "sms_mt" : {
+              "type" : "boolean"
+            },
+            "sms_mo" : {
+              "type" : "boolean"
+            },
+            "blockIntSMSMOExceptHomeCountry" : {
+              "type" : "boolean"
+            },
+            "voice_mo" : {
+              "type" : "boolean"
+            },
+            "voice_mt" : {
+              "type" : "boolean"
+            },
+            "internationalVoice" : {
+              "type" : "boolean"
+            },
+            "csdProfile" : {
+              "type" : "boolean"
+            },
+            "csdBearerServiceType" : {
+              "type" : "string"
+            },
+            "csd_mo" : {
+              "type" : "boolean"
+            },
+            "csd_mt" : {
+              "type" : "boolean"
+            },
+            "createdOnHLR" : {
+              "type" : "boolean"
+            },
+            "roamingRestrictionSetId" : {
+              "type" : "long"
+            },
+            "lteRoamingRestrictionSetId" : {
+              "type" : "long"
+            },
+            "active" : {
+              "type" : "boolean"
+            },
+            "fixedIpEnabled" : {
+              "type" : "boolean"
+            },
+            "blockPremiumNumbers" : {
+              "type" : "boolean"
+            },
+            "description" : {
+              "type" : "string"
+            },
+            "lteData" : {
+              "type" : "boolean"
+            },
+            "apns" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "apnId" : {
+                    "type" : "long"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "lte" : {
+                    "type" : "boolean"
+                  },
+                  "pdpIndex" : {
+                    "type" : "string"
+                  },
+                  "pdnIndex" : {
+                    "type" : "string"
+                  },
+                  "apnDesc" : {
+                    "type" : "string"
+                  },
+                  "defaultApn" : {
+                    "type" : "boolean"
+                  },
+                  "fixedIpEnabled" : {
+                    "type" : "boolean"
+                  },
+                  "securityEnabled" : {
+                    "type" : "boolean"
+                  },
+                  "subscriptionEnabled" : {
+                    "type" : "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

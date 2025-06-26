@@ -1,0 +1,239 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Search Devices"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/devices": {
+      "get": {
+        "tags": [
+          "Search Devices"
+        ],
+        "summary": "Search for devices based on various filters.",
+        "description": "",
+        "operationId": "searchDevices",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "description": "Filter by account",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "modifiedSince",
+            "in": "query",
+            "description": "Filter by time since last modification was made to device.</br> The format is yyyy-MM-ddTHH:mm:ssZ </br> Eg: 2016-04-18T17:31:34+00:00",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "modifiedTill",
+            "in": "query",
+            "description": "Filter by time till last modification was made to device.</br> The format is yyyy-MM-ddTHH:mm:ssZ </br> Eg: 2016-05-18T17:31:34+00:00",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by device status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom1",
+            "in": "query",
+            "description": "Filter by account custom field 1",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom2",
+            "in": "query",
+            "description": "Filter by account custom field 2",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom3",
+            "in": "query",
+            "description": "Filter by account custom field 3",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom4",
+            "in": "query",
+            "description": "Filter by account custom field 4",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom5",
+            "in": "query",
+            "description": "Filter by account custom field 5",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom6",
+            "in": "query",
+            "description": "Filter by account custom field 6",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom7",
+            "in": "query",
+            "description": "Filter by account custom field 7",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom8",
+            "in": "query",
+            "description": "Filter by account custom field 8",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom9",
+            "in": "query",
+            "description": "Filter by account custom field 9",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountCustom10",
+            "in": "query",
+            "description": "Filter by account custom field 10",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "operatorCustom1",
+            "in": "query",
+            "description": "Filter by operator custom field 1",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "operatorCustom2",
+            "in": "query",
+            "description": "Filter by operator custom field 2",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "operatorCustom3",
+            "in": "query",
+            "description": "Filter by operator custom field 3",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "operatorCustom4",
+            "in": "query",
+            "description": "Filter by operator custom field 4",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "operatorCustom5",
+            "in": "query",
+            "description": "Filter by operator custom field 5",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customerCustom1",
+            "in": "query",
+            "description": "Filter by customer custom field 1",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customerCustom2",
+            "in": "query",
+            "description": "Filter by customer custom field 2",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customerCustom3",
+            "in": "query",
+            "description": "Filter by customer custom field 3",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customerCustom4",
+            "in": "query",
+            "description": "Filter by customer custom field 4",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customerCustom5",
+            "in": "query",
+            "description": "Filter by customer custom field 5",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Maximum of 50, defaults to 50",
+            "required": false,
+            "type": "integer",
+            "default": 50,
+            "format": "int32"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Defaults to 1",
+            "required": false,
+            "type": "integer",
+            "default": 1,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  }
+}

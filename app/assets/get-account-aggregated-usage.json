@@ -1,0 +1,124 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Get list of Aggregated Usage Details Group by Carrier, Country, RatePlan, RatingZone for given account."
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/dynareport/acct/usage": {
+      "get": {
+        "tags": [
+          "Get list of Aggregated Usage Details Group by Carrier, Country, RatePlan, RatingZone for given account."
+        ],
+        "summary": "Return list of Aggregated Usage Details Group by Carrier, Country, RatePlan, RatingZone for given account.",
+        "description": "",
+        "operationId": "getAggregatedUsageByAccount",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start Date. The format is yyyyMMDD. Example: 20240624",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End Date. The format is yyyyMMDD. Example: 20240628",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "billingCycle",
+            "in": "query",
+            "description": "Billing Cycle. The format is yyyyMM. Example: 202410",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "groupBy",
+            "in": "query",
+            "description": "Group By carrier,country,RatePlan,RatingZone. Example: carrier,country,ratePlan,ratingZone. Accepts list of string.",
+            "required": false,
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          {
+            "name": "metrics",
+            "in": "query",
+            "description": "Metrics. Example: data,sms,voice,smt,smo,vmo,vmt. Accepts list of string.",
+            "required": false,
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          {
+            "name": "sortedBy",
+            "in": "query",
+            "description": "Sorted By. Example: account, data, sms, voice, smt, smo, vmt, vmo",
+            "required": false,
+            "type": "string",
+            "default": "account"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "description": "Sort Direction",
+            "required": false,
+            "type": "string",
+            "default": "desc"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page Number",
+            "required": false,
+            "type": "integer",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page Size",
+            "required": false,
+            "type": "integer",
+            "default": "50"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Remove a Device from a Partner Account"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/devices/{iccid}/partnerAccounts/{partnerAcctId}": {
+      "delete": {
+        "tags": [
+          "Remove a Device from a Partner Account"
+        ],
+        "summary": "Remove a Device from a Partner Account.",
+        "description": "",
+        "operationId": "removeDeviceFromPartnerAccount",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "iccid",
+            "in": "path",
+            "description": "iccid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "partnerAcctId",
+            "in": "path",
+            "description": "partnerAcctId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Effective Date not supported yet",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RemoveDeviceFromPartnerAccountRequest"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RemoveDeviceFromPartnerAccountRequest": {
+      "type": "object",
+      "properties": {
+        "effectiveDate": {
+          "type": "string",
+          "format": "date",
+          "required": false
+        }
+      }
+    }
+  }
+}

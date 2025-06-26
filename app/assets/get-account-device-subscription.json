@@ -1,0 +1,99 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Get list of Device Subscription Details for given account."
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/dynareport/acct/device/subscriptions": {
+      "get": {
+        "tags": [
+          "Get list of Device Subscription Details for given account."
+        ],
+        "summary": "Return list of Device Subscription Details for given account.",
+        "description": "",
+        "operationId": "getAcctDeviceResponse",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start Date. The format is yyyyMMDD. Example: 20240624",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End Date. The format is yyyyMMDD. Example: 20240628",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "billingCycle",
+            "in": "query",
+            "description": "Billing Cycle. The format is yyyyMM. Example: 202410",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "billable",
+            "in": "query",
+            "description": "Billable flag. Valid value can be Y or N.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page Number",
+            "required": false,
+            "type": "integer",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page Size",
+            "required": false,
+            "type": "integer",
+            "default": "50"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

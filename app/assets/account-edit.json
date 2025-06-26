@@ -1,0 +1,410 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Accounts"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/accounts/{accountId}": {
+      "put": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Update an account",
+        "description": "",
+        "operationId": "updateAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "description": "AccountId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Update an account",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountUpdateDTO"
+            }
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AccountUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string",
+          "format": "string",
+          "required": false,
+          "minLength": 2,
+          "maxLength": 60,
+          "pattern": "^[^*,]+$"
+        },
+        "status": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "currency": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "language": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "taxId": {
+          "type": "string",
+          "format": "string",
+          "required": false,
+          "minLength": 1,
+          "maxLength": 20,
+          "pattern": "^[^*,]+$"
+        },
+        "industryVertical": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "p5gCommercialStatus": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "primaryContact": {
+          "type": "object",
+          "properties": {
+            "contactName": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 3,
+              "maxLength": 49
+            },
+            "lastName": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 3,
+              "maxLength": 49
+            },
+            "email": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 3,
+              "maxLength": 320,
+              "pattern": "^[a-zA-Z0-9$%&'*+-/=?^`{|}~]+@[a-zA-Z0-9.-]+$"
+            },
+            "phone": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 25
+            },
+            "fax": {
+              "type": "string",
+              "required": false
+            },
+            "jobTitle": {
+              "type": "string",
+              "required": false
+            }
+          }
+        },
+        "billingContact": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": false
+            },
+            "firstName": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 3,
+              "maxLength": 49
+            },
+            "lastName": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 3,
+              "maxLength": 49
+            },
+            "email": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 3,
+              "maxLength": 320,
+              "pattern": "^[a-zA-Z0-9$%&'*+-/=?^`{|}~]+@[a-zA-Z0-9.-]+$"
+            },
+            "phone": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 25
+            },
+            "fax": {
+              "type": "string",
+              "required": false
+            }
+          }
+        },
+        "billingAddr": {
+          "type": "object",
+          "properties": {
+            "addr1": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "addr2": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "city": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "region": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "countryCode": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "postalCode": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        },
+        "shippingAddr": {
+          "type": "object",
+          "properties": {
+            "addr1": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "addr2": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "city": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "region": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "countryCode": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "postalCode": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        },
+        "ppuAddr": {
+          "type": "object",
+          "properties": {
+            "addr1": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "addr2": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "city": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "region": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "countryCode": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "postalCode": {
+              "type": "string",
+              "format": "string",
+              "required": false,
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        },
+        "accountSegment": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "notes": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "operatorAccountId": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "customFields": {
+          "type": "object",
+          "properties": {
+            "fieldValue1": {
+              "type": "string",
+              "required": false
+            },
+            "fieldValue2": {
+              "type": "string",
+              "required": false
+            },
+            "fieldValue3": {
+              "type": "string",
+              "required": false
+            },
+            "fieldValue4": {
+              "type": "string",
+              "required": false
+            },
+            "fieldValue5": {
+              "type": "string",
+              "required": false
+            },
+            "fieldValue6": {
+              "type": "string",
+              "required": false
+            },
+            "fieldValue7": {
+              "type": "string",
+              "required": false
+            },
+            "fieldValue8": {
+              "type": "string",
+              "required": false
+            },
+            "fieldValue9": {
+              "type": "string",
+              "required": false
+            },
+            "fieldValue10": {
+              "type": "string",
+              "required": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

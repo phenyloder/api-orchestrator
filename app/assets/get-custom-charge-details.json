@@ -1,0 +1,65 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Custom Charges"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/charges/{chargeId}": {
+      "get": {
+        "tags": [
+          "Custom Charges"
+        ],
+        "summary": "Get custom charge details for a given chargeId",
+        "description": "",
+        "operationId": "getCustomChargeByChargeId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "chargeId",
+            "in": "path",
+            "description": "ChargeId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Bad credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

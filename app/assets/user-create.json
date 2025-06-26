@@ -1,0 +1,144 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [{
+    "name": "Users"
+  }],
+  "paths": {
+    "/v{apiVersion}/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create user.",
+        "description": "",
+        "operationId": "createUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "description": "Create a User ",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/UserCreateDTO"
+          }
+        },
+          {
+            "name": "apiVersion",
+            "in": "path",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserCreateDTO": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "minLength": 6,
+          "maxLength": 25
+        },
+        "roleName": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "accessType": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "accountName": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "customerName": {
+          "type": "string",
+          "format": "string",
+          "required": false
+        },
+        "firstName": {
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "lastName": {
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "email": {
+          "type": "string",
+          "format": "string",
+          "required": true,
+          "minLength": 3,
+          "maxLength": 320,
+          "pattern": "^[a-zA-Z0-9$%&'*+-/=?^`{|}~]+@[a-zA-Z0-9.-]+$"
+        },
+        "phone": {
+          "type": "string",
+          "format": "string",
+          "required": false,
+          "minLength": 0,
+          "maxLength": 25
+        },
+        "language": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "timeZone": {
+          "type": "string",
+          "format": "string",
+          "required": true
+        },
+        "liveUpdateEnabled": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    }
+  }
+}

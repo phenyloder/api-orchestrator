@@ -1,0 +1,99 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": ""
+  },
+  "basePath": "/rws/api",
+  "tags": [
+    {
+      "name": "Assign Event Rate Plan to Device"
+    }
+  ],
+  "paths": {
+    "/v{apiVersion}/eventplan/{iccid}": {
+      "put": {
+        "tags": [
+          "Assign Event Rate Plan to Device"
+        ],
+        "summary": "Triggers activation of an event for a device on the effective date",
+        "description": "",
+        "operationId": "activateTerminalEvent",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "apiVersion",
+            "description": "Defaults to 1",
+            "required": true,
+            "type": "string",
+            "default": "1"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Triggers event activation for a device at the current date and time if no effectiveDate is provided.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ActivateTerminalEventRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "iccid",
+            "description": "ICCID of the device",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ActivateTerminalEventRequest": {
+      "type": "object",
+      "properties": {
+        "eventName": {
+          "type": "string",
+          "default": "eventName"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2024-04-29T12:03:44Z"
+        },
+        "instances": {
+          "type": "integer",
+          "default": 1
+        },
+        "unlimitedInstances": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": ["eventName"]
+    }
+  }
+}
