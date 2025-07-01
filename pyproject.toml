@@ -16,7 +16,6 @@ dependencies = [
     "prance (==23.6.21.0)",
     "httpx (==0.25.2)",
     "redis (==5.0.1)",
-    "networkx (==3.2.1)",
     "pydantic",
     "pydantic-settings",
     "structlog (==23.2.0)",

@@ -5,7 +5,6 @@ An intelligent API orchestration service that automatically chains API calls bas
 ## Features
 
 - 🤖 Natural language query processing using LLMs
-- 🔗 Automatic API dependency resolution
 - 📋 Intelligent execution planning
 - 🔄 Support for complex multi-step workflows
 - 📖 OpenAPI/Swagger specification parsing

@@ -97,8 +97,7 @@ Example response:
   }},
   {{
     "operation_id": "getRateplan",
-    "parameters": {{"rateplanId": "${{rateplanId}}"}},
-    "depends_on": ["getAccount"]
+    "parameters": {{"rateplanId": "${{rateplanId}}"}}
   }}
 ]
 '''
@@ -121,7 +120,6 @@ Example response:
                 steps_data = []
 
         steps = []
-        op_to_step = {}
         for step_data in steps_data:
             op_details = self.api_registry.get_operation_details(step_data['operation_id'])
             if op_details:
@@ -134,11 +132,6 @@ Example response:
                     body=step_data.get('body'),
                     extract_fields=step_data.get('extract_fields', {})
                 )
-                # Map dependencies
-                for dep_op in step_data.get('depends_on', []):
-                    if dep_op in op_to_step:
-                        step.depends_on.append(op_to_step[dep_op])
-                op_to_step[step_data['operation_id']] = step.id
                 steps.append(step)
         return steps
 

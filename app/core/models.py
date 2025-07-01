@@ -28,7 +28,6 @@ class APICallPlan(BaseModel):
     path: str
     parameters: Dict[str, Any] = {}
     body: Optional[Dict[str, Any]] = None
-    depends_on: List[str] = []
     extract_fields: Dict[str, str] = {}
 
 class ExecutionPlan(BaseModel):
@@ -38,20 +37,7 @@ class ExecutionPlan(BaseModel):
     steps: List[APICallPlan] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
-    def get_dependency_order(self) -> List[APICallPlan]:
-        import networkx as nx
 
-        G = nx.DiGraph()
-        for step in self.steps:
-            G.add_node(step.id)
-            for dep in step.depends_on:
-                G.add_edge(dep, step.id)
-
-        try:
-            ordered_ids = list(nx.topological_sort(G))
-            return [next(s for s in self.steps if s.id == sid) for sid in ordered_ids]
-        except nx.NetworkXError:
-            raise ValueError("Circular dependency detected")
 
 class ExecutionResult(BaseModel):
     plan_id: str

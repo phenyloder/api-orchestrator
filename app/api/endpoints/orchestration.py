@@ -62,7 +62,6 @@ async def execute_query(
                         "method": step.method,
                         "path": step.path,
                         "parameters": step.parameters,
-                        "depends_on": step.depends_on,
                         "extract_fields": step.extract_fields
                     }
                     for step in plan.steps
@@ -94,7 +93,6 @@ async def get_execution_plan(
                     "method": step.method,
                     "path": step.path,
                     "parameters": step.parameters,
-                    "depends_on": step.depends_on,
                     "extract_fields": step.extract_fields
                 }
                 for step in plan.steps

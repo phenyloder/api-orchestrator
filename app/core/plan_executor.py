@@ -23,9 +23,8 @@ class PlanExecutor:
         resource_results = {}
 
         try:
-            ordered_steps = plan.get_dependency_order()
-
-            for step in ordered_steps:
+            # Execute steps in the order they appear in the plan
+            for step in plan.steps:
                 try:
                     step = self._substitute_parameters(step, context)
 
